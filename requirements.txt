@@ -6,3 +6,4 @@ pypdf
 streamlit
 wandb
 langchain-community
+langchain-chroma
