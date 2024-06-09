@@ -5,3 +5,4 @@ langchain-huggingface
 pypdf
 streamlit
 wandb
+langchain-community
