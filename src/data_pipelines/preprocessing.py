@@ -2,12 +2,12 @@ import os
 import argparse
 import langchain
 import wandb
-#from dotenv import load_dotenv, find_dotenv
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_chroma import Chroma
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
+#from dotenv import load_dotenv, find_dotenv
 #load_dotenv(find_dotenv())
 
 model_name = "jinaai/jina-embeddings-v2-small-en"
