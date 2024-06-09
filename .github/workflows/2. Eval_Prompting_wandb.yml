@@ -5,7 +5,7 @@ on:
         branches:
             - main
         paths:
-            - 'src/llms/evaluate_llms.py'
+            - 'src/llms/evaluate_llms_wandb.py'
     workflow_dispatch:
 
 jobs:
