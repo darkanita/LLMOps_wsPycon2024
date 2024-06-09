@@ -7,3 +7,4 @@ streamlit
 wandb
 langchain-community
 langchain-chroma
+langchain-openai
