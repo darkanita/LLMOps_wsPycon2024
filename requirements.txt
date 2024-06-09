@@ -8,3 +8,4 @@ wandb
 langchain-community
 langchain-chroma
 langchain-openai
+weave
