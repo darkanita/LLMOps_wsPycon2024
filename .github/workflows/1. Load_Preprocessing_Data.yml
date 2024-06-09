@@ -21,7 +21,7 @@ jobs:
           env:
             WANDB_API_KEY: ${{ secrets.WANDB_API_KEY }}
           run: wandb login $WANDB_API_KEY
-        - name: Run load.py
+        - name: Run data_pipeline preprocessind data
           env:
             HUGGINGFACEHUB_API_TOKEN: ${{ secrets.HUGGINGFACEHUB_API_TOKEN }}
-          run: python src/data/preprocessing.py --IdExecution ${{ github.run_number }}
+          run: python src/data_pipelines/preprocessing.py --IdExecution ${{ github.run_number }}
