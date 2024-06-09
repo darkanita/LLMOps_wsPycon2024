@@ -153,7 +153,7 @@ with wandb.init(project="LLMOps-Pycon2024",name=f"Evaluate-RAG ExecId-{args.IdEx
   artifact = run.use_artifact('labsirius/LLMOps-Pycon2024/vector-database:v3', type='dataset')
   artifact_dir = artifact.download()
   
-  vectorstore = Chroma(persist_directory="/artifacts/vector-database-v3", embedding_function=embedding_function)
+  vectorstore = Chroma(persist_directory="artifacts/vector-database-v3", embedding_function=embedding_function)
   print(vectorstore.similarity_search("What is the name of the new language representation model introduced in the document?"))
   
   artifact = run.use_artifact('labsirius/LLMOps-Pycon2024/prompt_template:v1', type='dataset')
