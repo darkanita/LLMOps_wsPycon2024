@@ -1,11 +1,11 @@
-name: 1. Load Preprocessing Data
+name: 1. Load Preprocessing Data with AOAI
 
 on:
     push:
         branches:
             - main
         paths:
-            - 'src/data_pipelines/preprocessing.py'
+            - 'src/data_pipelines/preprocessing_aoai.py'
     workflow_dispatch:
 
 jobs:
@@ -22,7 +22,10 @@ jobs:
           env:
             WANDB_API_KEY: ${{ secrets.WANDB_API_KEY }}
           run: wandb login $WANDB_API_KEY
-        - name: Run data_pipeline preprocessind data
+        - name: Run data_pipeline preprocessind data with AOAI
           env:
-            HUGGINGFACEHUB_API_TOKEN: ${{ secrets.HUGGINGFACEHUB_API_TOKEN }}
-          run: python src/data_pipelines/preprocessing.py --IdExecution ${{ github.run_number }}
+            AZURE_OPENAI_ENDPOINT: ${{ secrets.AZURE_OPENAI_ENDPOINT }}
+            AZURE_OPENAI_API_KEY: ${{ secrets.AZURE_OPENAI_API_KEY }}
+            EMBEDDINGS_DEPLOYMENT_NAME: ${{ secrets.EMBEDDINGS_DEPLOYMENT_NAME }}
+            OPENAI_API_VERSION : ${{ secrets.OPENAI_API_VERSION }}
+          run: python src/data_pipelines/preprocessing_aoai.py --IdExecution ${{ github.run_number }}
