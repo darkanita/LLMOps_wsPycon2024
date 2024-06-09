@@ -1,0 +1,5 @@
+{
+    "AOAIEndpoint": "https://llmops-pycon2024.openai.azure.com/",
+    "AOAIKey": "772607f9cff04160814ffd5f504489fe",
+    "AOAIDeploymentName": "gpt-4"
+}
