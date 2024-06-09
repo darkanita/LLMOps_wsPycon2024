@@ -1,4 +1,4 @@
-name: Testing Login to WandB
+name: 0. Testing Login to WandB
 
 on:
   workflow_dispatch: # Allows manual execution only
