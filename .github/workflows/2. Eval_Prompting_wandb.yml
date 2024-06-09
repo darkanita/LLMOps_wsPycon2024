@@ -1,0 +1,32 @@
+name: 2. Evaluate Prompts Wandb
+
+on:
+    push:
+        branches:
+            - main
+        paths:
+            - 'src/llms/evaluate_llms.py'
+    workflow_dispatch:
+
+jobs:
+  login:
+    runs-on: ubuntu-latest
+    steps:
+        - uses: actions/checkout@v4 
+        - uses: actions/setup-python@v5
+          with:
+            python-version: '3.12'
+            cache: 'pip' # caching pip dependencies
+        - run: pip install -r requirements.txt
+        - name: Login to WandB
+          env:
+            WANDB_API_KEY: ${{ secrets.WANDB_API_KEY }}
+          run: wandb login $WANDB_API_KEY
+        - name: Run data_pipeline preprocessind data with AOAI
+          env:
+            AZURE_OPENAI_ENDPOINT: ${{ secrets.AZURE_OPENAI_ENDPOINT }}
+            AZURE_OPENAI_API_KEY: ${{ secrets.AZURE_OPENAI_API_KEY }}
+            EMBEDDINGS_DEPLOYMENT_NAME: ${{ secrets.EMBEDDINGS_DEPLOYMENT_NAME }}
+            OPENAI_API_VERSION : ${{ secrets.OPENAI_API_VERSION }}
+            CHAT_COMPLETIONS_DEPLOYMENT_NAME : ${{ secrets.CHAT_COMPLETIONS_DEPLOYMENT_NAME }}
+          run: python src/llms/evaluate_llms_wandb.py --IdExecution ${{ github.run_number }}

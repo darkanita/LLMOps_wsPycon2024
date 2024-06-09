@@ -34,9 +34,11 @@ with wandb.init(project="LLMOps-Pycon2024",name=f"Preprocess Data ExecId-{args.I
     loader = PyPDFLoader(file_path)
     docs = loader.load()
     print(len(docs))
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size=512, chunk_overlap=50)
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
     splits = text_splitter.split_documents(docs)
+    print(len(splits))
     vectorstore = Chroma.from_documents(documents=splits, embedding=embedding_function,persist_directory="src/rag_db")
+    print(vectorstore.get()['documents'][0])
     # 📦 save the vector database to the artifact
     vectorstore_artifact = wandb.Artifact(
         "vector-database", type="dataset", description="Vector Database for RAG model",
@@ -44,6 +46,7 @@ with wandb.init(project="LLMOps-Pycon2024",name=f"Preprocess Data ExecId-{args.I
                   "sizes": len(docs),
                   "embedding": deployment,
                   "chunks": len(splits),
-                  "destined_for": "rag-model"})
+                  "destined_for": "rag-model",
+                  "example":vectorstore.get()['documents'][0]})
     vectorstore_artifact.add_dir("src/rag_db")
     run.log_artifact(vectorstore_artifact)
