@@ -2,10 +2,11 @@ name: 1. Load Preprocessing Data
 
 on:
     push:
-      branches:
-        - main
-      paths:
-        - 'src/data_pipelines/preprocessing.py'
+        branches:
+            - main
+        paths:
+            - 'src/data_pipelines/preprocessing.py'
+    workflow_dispatch:
 
 jobs:
   login:
