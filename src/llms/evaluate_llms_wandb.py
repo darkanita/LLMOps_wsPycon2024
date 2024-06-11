@@ -149,8 +149,8 @@ with wandb.init(project="LLMOps-Pycon2024",name=f"Evaluate-RAG ExecId-{args.IdEx
 
 with wandb.init(project="LLMOps-Pycon2024",name=f"Evaluate-RAG ExecId-{args.IdExecution}", job_type="evaluate-rag") as run:
   config = wandb.config
-  
-  artifact = run.use_artifact('labsirius/LLMOps-Pycon2024/vector-database:v3', type='dataset')
+
+  artifact = run.use_artifact('aleja-unal/LLMOps-Pycon2024/vector-database:v3', type='dataset')
   artifact_dir = artifact.download()
   
   vectorstore = Chroma(persist_directory="artifacts/vector-database-v3", embedding_function=embedding_function)
